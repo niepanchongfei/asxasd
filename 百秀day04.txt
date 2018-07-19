@@ -1,0 +1,89 @@
+
+
+query方法封装的 是专门查询
+
+所以 插入 修改 删除 都不能用他 用 原生那个 mysqli_query()
+
+拼接字符串 一般等循环拼接完成之后 再追加到页面
+这样的话效率要高
+
+ type="submit" 这样的话 表单form 会提交跳转
+
+
+ type="button"   普通按钮 没有什么特殊
+
+查询 返回的应该是 二维数组
+
+插入到数据库（添加）
+insert into categories(字段1，字段2 ...) values(值1，值2...)
+
+删除
+delete from categories where id=1
+delete from categories where id in(1,2,3) 删除id为1 和2 和3 的数据
+
+更新修改
+update categories set name='啊啊啊',slug='1111111',classname='xxxx' where id=6
+
+插入 更新 删除 返回的是 true和false
+
+       // 1jq的ajax  传递参数的方式
+        //  1. data直接写一个对象形式 jq给你循环拼接成了 字符串样子
+        //  2. 传一个字符串  'name=zs&slug=18&classname=fa' 那更好了 不需要拼接了
+        // $("表单").serialize(); 获取表单的name属性值 和value值自动拼接成 'name=zs&slug=18&classname=fa'
+        // console.log($("#data").serialize())
+
+
+
+
+
+
+$keys=array_keys($post);//把数组里面的 键 拿出来 组成一个新数组
+// print_r($keys);  [name,slug,classname] 
+$keyStr=implode(',',$keys); // name,slug,classname
+// echo $keyStr;
+$vaules=array_values($post);//把数组里面的 值 拿出来 组成一个新数组
+
+// print_r($vaules); //   [体育,tiyu,fa]
+$valStr=implode("','",$vaules); //
+
+
+var name=$(this).parents('tr').children().eq(1).text();
+           a     的祖先tr    的 孩子    索引1的孩子 的内容
+//索引为1对应第二个td
+
+
+
+
+
+
+编辑完成
+   想办法 也要把 id 传过去
+   1.点击编辑完成 绑定点击事件
+   2 获取新修改的 文本框的 值
+   3 发送ajax 把新修改的值 传到 后台去
+
+
+
+
+后台
+  1.拿到你传过来的 数据
+  2 写sql update 去更新数据库
+  3 更新成功返回前端 成功  失败返回失败
+
+
+jq里面 其他的普通属性 都是
+$(this).attr() 获取和设置
+但是 有三个特殊的 必须适应 prop方法来获取和设置
+$(this).prop("checked") 单选框复选框
+$(this).prop("selected") 下拉框
+$(this).prop("disabled")  禁用
+ 
+checked  selected disabled 这三个值是true或者false
+
+
+
+
+
+
+
+
